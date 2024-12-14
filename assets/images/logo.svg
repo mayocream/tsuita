@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200">
+  <!-- Background circle -->
+  <circle cx="100" cy="100" r="90" fill="#f5f5f5" />
+
+  <!-- Stylized characters with gradient -->
+  <defs>
+    <linearGradient id="textGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#2c3e50" />
+      <stop offset="100%" style="stop-color:#3498db" />
+    </linearGradient>
+
+    <linearGradient id="bracketsGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#95a5a6" />
+      <stop offset="100%" style="stop-color:#7f8c8d" />
+    </linearGradient>
+  </defs>
+
+  <!-- All text centered using text-anchor -->
+  <g text-anchor="middle">
+    <!-- Brackets and 仮 character -->
+    <text x="100" y="80" font-family="sans-serif" font-size="30" fill="url(#bracketsGradient)"
+      style="writing-mode: horizontal-tb;">
+      (仮)
+    </text>
+
+    <!-- Main characters 対多 -->
+    <text x="100" y="135" font-family="sans-serif" font-size="70" font-weight="bold" fill="url(#textGradient)"
+      style="writing-mode: horizontal-tb;">
+      対多
+    </text>
+  </g>
+
+  <!-- Centered decorative elements -->
+  <path d="M50 160 L150 160" stroke="#3498db" stroke-width="4" stroke-linecap="round" />
+</svg>

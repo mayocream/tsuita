@@ -9,32 +9,53 @@ generator client {
 }
 
 datasource db {
-  provider = "postgresql"
-  url      = env("DATABASE_URL")
+  provider  = "postgresql"
+  url       = env("POSTGRES_PRISMA_URL") // uses connection pooling
+  directUrl = env("POSTGRES_URL_NON_POOLING") // uses a direct connection
 }
 
 // In case of the user is anmymous, we can use the following model
 model User {
   id String @id @default(uuid())
 
-  comments Comment[]
-  posts    Post[]
+  tweets Tweet[]
+
+  Reaction Reaction[]
 }
 
-model Post {
+model Tweet {
   id      Int    @id @default(autoincrement())
   content String
 
-  comments Comment[]
-  owner    User[]
+  authorId String
+  author   User   @relation(fields: [authorId], references: [id], onDelete: Cascade)
+
+  parentId Int?
+  parent   Tweet?  @relation("Replies", fields: [parentId], references: [id], onDelete: Cascade)
+  replies  Tweet[] @relation("Replies")
+
+  createdAt DateTime @default(now())
+
+  Reaction Reaction[]
 }
 
-model Comment {
-  id      Int    @id @default(autoincrement())
-  content String
-  postId  Int
-  post    Post   @relation(fields: [postId], references: [id], onDelete: Cascade)
+model Reaction {
+  tweetId Int
+  tweet   Tweet @relation(fields: [tweetId], references: [id], onDelete: Cascade)
 
   userId String
-  owner  User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  type LikeType
+
+  createdAt DateTime @default(now())
+
+  @@id([tweetId, userId, type])
+  @@index([tweetId, type])
+}
+
+enum LikeType {
+  Grass
+  Thumb
+  Candy
 }

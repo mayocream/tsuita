@@ -4,14 +4,12 @@ import { motion } from 'framer-motion'
 import {
   HomeIcon,
   MagnifyingGlassIcon,
-  BellIcon,
   UserCircleIcon,
   Cog6ToothIcon,
 } from '@heroicons/react/24/outline'
 import {
   HomeIcon as HouseSolidIcon,
   MagnifyingGlassIcon as SearchSolidIcon,
-  BellIcon as BellSolidIcon,
   UserCircleIcon as UserSolidIcon,
   Cog6ToothIcon as CogSolidIcon,
 } from '@heroicons/react/24/solid'
@@ -25,12 +23,6 @@ const menus = [
     path: '/search',
     icon: MagnifyingGlassIcon,
     activeIcon: SearchSolidIcon,
-  },
-  {
-    name: '通知',
-    path: '/notifications',
-    icon: BellIcon,
-    activeIcon: BellSolidIcon,
   },
   {
     name: '個人情報',

@@ -25,6 +25,9 @@ export const GET = async (request: NextRequest) => {
 }
 
 export const POST = async (request: NextRequest) => {
+
+  console.log('POST request')
+
   const user = await auth()
   if (!user) {
     return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })

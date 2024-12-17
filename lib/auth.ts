@@ -13,7 +13,9 @@ export const auth = async () => {
       }
   } else {
     // create a new user
-    const user = await prisma.user.create({})
+    const user = await prisma.user.create({
+      data: {}
+    })
     await createSession(user.id)
   }
 }

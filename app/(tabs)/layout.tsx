@@ -11,7 +11,12 @@ export default function Layout({ children }) {
 
       {/* Main Content Area */}
       <div className='flex-1 max-w-[600px]'>
-        <div className='border-x border-gray-200 min-h-screen'>{children}</div>
+        <div className='border-x border-gray-200 min-h-screen'>
+          <div className='flex justify-center items-center border-b border-gray-200'>
+            <h1 className='font-semibold text-xl p-2'>対多</h1>
+          </div>
+          {children}
+        </div>
       </div>
 
       {/* Right Sidebar */}

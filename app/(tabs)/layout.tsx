@@ -1,12 +1,14 @@
 import { Navigation } from '@/components/navigation'
+import { TweetDialog } from '@/components/tweet'
 
 export default function Layout({ children }) {
   return (
     <div className='container mx-auto flex justify-center min-h-screen bg-white'>
       {/* Left Sidebar */}
-      <div className='hidden md:block w-80 px-4 py-6'>
+      <div className='hidden md:flex w-72 px-4 py-6 items-center flex-col'>
         {/* Logo or Brand */}
         <Navigation />
+        <TweetDialog />
       </div>
 
       {/* Main Content Area */}
@@ -20,7 +22,7 @@ export default function Layout({ children }) {
       </div>
 
       {/* Right Sidebar */}
-      <div className='hidden md:block w-80 px-4 py-6'></div>
+      <div className='hidden md:block w-72 px-4 py-6'></div>
     </div>
   )
 }

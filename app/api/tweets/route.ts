@@ -2,8 +2,10 @@ import { NextRequest, NextResponse } from 'next/server'
 import { prisma } from '@/lib/storage'
 import { auth } from '@/lib/auth'
 
-export const GET = async (request: NextRequest, segmentData) => {
-  const { cursor, limit = 10 } = await segmentData.searchParams
+export const GET = async (request: NextRequest) => {
+  const searchParams = await request.nextUrl.searchParams
+  const limit = searchParams.get('limit') || '10'
+  const cursor = searchParams.get('cursor')
 
   // Get tweets from users the current user follows, plus their own tweets
   const tweets = await prisma.tweet.findMany({

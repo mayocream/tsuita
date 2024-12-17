@@ -53,7 +53,14 @@ export const TweetDialog = () => {
       return
     }
 
-    console.log('送信:', text)
+    fetch('/api/tweets', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ content: text }),
+    })
+
     setText('')
     setWarning('')
   }

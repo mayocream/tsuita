@@ -7,7 +7,9 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "postinstall": "prisma generate"
+    "postinstall": "prisma generate",
+    "migrate:local": "dotenv -e .env.local -- prisma db push",
+    "migrate:prod": "dotenv -e .vercel/.env.development.local -- prisma db push"
   },
   "dependencies": {
     "@heroicons/react": "^2.2.0",
@@ -23,6 +25,7 @@
     "@types/node": "^22.10.2",
     "@types/react": "^19.0.1",
     "@types/react-dom": "^19.0.2",
+    "dotenv-cli": "^7.4.4",
     "postcss": "^8.4.49",
     "tailwindcss": "^3.4.16",
     "typescript": "^5.7.2"

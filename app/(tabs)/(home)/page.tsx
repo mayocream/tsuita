@@ -1,7 +1,7 @@
 'use client'
 
 import { useInfiniteQuery } from '@tanstack/react-query'
-import { useCallback } from 'react'
+import { Fragment, useCallback } from 'react'
 import { TweetCard } from '@/components/tweet'
 
 export default function Page() {
@@ -48,19 +48,19 @@ export default function Page() {
   if (status === 'error') return <ErrorMessage error={error} />
 
   return (
-    <section className='space-y-4'>
+    <section>
       {data.pages.map((page, index) => (
-        <div key={index}>
+        <Fragment key={index}>
           {page.map((tweet, index) => (
             <div
               key={index}
               ref={index === page.length - 1 ? lastTweetRef : null}
-              className='border border-gray-200 rounded-lg p-4 hover:bg-gray-50'
+              className='border-b border-gray-200 p-4 hover:bg-gray-50'
             >
               <TweetCard tweet={tweet} />
             </div>
           ))}
-        </div>
+        </Fragment>
       ))}
       {isFetchingNextPage && <LoadingSpinner />}
       {!hasNextPage && <EndMessage />}

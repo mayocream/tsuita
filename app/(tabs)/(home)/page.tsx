@@ -14,7 +14,7 @@ export default function Page() {
     error,
   } = useInfiniteQuery({
     queryKey: ['tweets'],
-    queryFn: ({ pageParam = 0 }) =>
+    queryFn: ({ pageParam }) =>
       fetch(`/api/tweets${pageParam ? `?cursor=${pageParam}` : ''}`).then(
         (res) => res.json()
       ),
@@ -42,18 +42,19 @@ export default function Page() {
   if (status === 'pending') return <LoadingSpinner />
   if (status === 'error') return <ErrorMessage error={error} />
 
-  const tweets = data.pages.flatMap((page) => page.tweets)
-  if (tweets.length === 0) return <EmptyState />
-
   return (
     <section className='space-y-4'>
-      {tweets?.map((tweet, index) => (
-        <div
-          key={index}
-          ref={index === tweets.length - 1 ? lastTweetRef : null}
-          className='border border-gray-200 rounded-lg p-4 hover:bg-gray-50'
-        >
-          <TweetCard tweet={tweet} />
+      {data.pages.map((page, index) => (
+        <div key={index}>
+          {page.map((tweet, index) => (
+            <div
+              key={index}
+              ref={index === page.length - 1 ? lastTweetRef : null}
+              className='border border-gray-200 rounded-lg p-4 hover:bg-gray-50'
+            >
+              <TweetCard tweet={tweet} />
+            </div>
+          ))}
         </div>
       ))}
       {isFetchingNextPage && <LoadingSpinner />}

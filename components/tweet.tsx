@@ -138,7 +138,7 @@ export const TweetCard = ({ tweet }) => {
     <div className='flex p-4'>
       <div className='flex flex-col flex-1 ml-4'>
         <p className='mt-2'>
-          これはツイートの内容です。これはツイートの内容です。これはツイートの内容です。
+          {tweet?.content}
         </p>
       </div>
     </div>

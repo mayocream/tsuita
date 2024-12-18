@@ -132,3 +132,15 @@ export const TweetDialog = () => {
     </DialogTrigger>
   )
 }
+
+export const TweetCard = ({ tweet }) => {
+  return (
+    <div className='flex p-4'>
+      <div className='flex flex-col flex-1 ml-4'>
+        <p className='mt-2'>
+          これはツイートの内容です。これはツイートの内容です。これはツイートの内容です。
+        </p>
+      </div>
+    </div>
+  )
+}

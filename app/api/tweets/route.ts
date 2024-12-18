@@ -9,7 +9,7 @@ export const GET = async (request: NextRequest) => {
 
   // Get tweets from users the current user follows, plus their own tweets
   const tweets = await prisma.tweet.findMany({
-    take: parseInt(limit as string),
+    take: parseInt(limit),
     skip: cursor ? 1 : 0,
     cursor: cursor
       ? {
@@ -25,9 +25,6 @@ export const GET = async (request: NextRequest) => {
 }
 
 export const POST = async (request: NextRequest) => {
-
-  console.log('POST request')
-
   const user = await auth()
   if (!user) {
     return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })

@@ -80,10 +80,4 @@ const ErrorMessage = ({ error }) => (
   </div>
 )
 
-const EmptyState = () => (
-  <p className='text-center text-gray-600 py-4'>No tweets found</p>
-)
-
-const EndMessage = () => (
-  <p className='text-center text-gray-600 py-4'>You've reached the end</p>
-)
+const EndMessage = () => <p className='text-center text-gray-600 py-4'>終</p>

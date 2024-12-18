@@ -18,8 +18,13 @@ export default function Page() {
       fetch(`/api/tweets${pageParam ? `?cursor=${pageParam}` : ''}`).then(
         (res) => res.json()
       ),
-    getNextPageParam: (lastPage) => lastPage.id,
-    initialPageParam: 0,
+    getNextPageParam: (lastPage) => {
+      // If the page is empty or has fewer items than the limit, there are no more pages
+      if (!lastPage || lastPage.length < 10) return undefined
+      // Return the ID of the last item for the next cursor
+      return lastPage[lastPage.length - 1].id
+    },
+    initialPageParam: undefined,
   })
 
   // Intersection Observer for infinite scroll
